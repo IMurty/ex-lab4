@@ -35,3 +35,21 @@
 # test_4
 # 1
 # 2
+
+
+def print_result(func_to_decorate):
+    def decorated_func(*args, **kwargs):
+        print(func_to_decorate.__name__)
+
+        func_to_decorate_res = func_to_decorate(*args, **kwargs)
+        if type(func_to_decorate_res) == list:
+            for i in func_to_decorate_res:
+                print(i)
+        elif type(func_to_decorate_res) == dict:
+            for i in func_to_decorate_res.keys():
+                print('{} = {}'.format(i, func_to_decorate_res[i]))
+        else:
+            print(func_to_decorate_res)
+        return func_to_decorate_res
+
+    return decorated_func
